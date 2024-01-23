@@ -1,0 +1,11 @@
+{
+    "name": "kirill/simple-mvc-framework",
+    "description": "This is my own MVC realisation",
+    "authors": [
+        {
+            "name": "Kirill Tarasenko",
+            "email": "ktarasenko003@gmail.com"
+        }
+    ],
+    "require": {}
+}
