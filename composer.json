@@ -7,5 +7,7 @@
             "email": "ktarasenko003@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.8"
+    }
 }
