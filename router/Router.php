@@ -6,7 +6,7 @@ class Router
 {
     private string $requestUri;
     private array $routes;
-    private int $requestUriParam;
+    public static int $requestUriParam;
     public function __construct()
     {
         $this->requestUri = $_SERVER['REQUEST_URI'];
@@ -31,8 +31,8 @@ class Router
     private function findRequestUriParam(): void
     {
         if (preg_match('/[0-9]+/', $this->requestUri, $matches)) {
-            $this->requestUriParam = $matches[0];
-            $this->requestUri = str_replace("/{$this->requestUriParam}", '', $this->requestUri);
+            self::$requestUriParam = $matches[0];
+            $this->requestUri = str_replace("/{$matches[0]}", '', $this->requestUri);
         }
     }
 }

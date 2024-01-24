@@ -15,5 +15,11 @@
             <li>{{ item.customerName }}</li>
         {% endfor %}
     </ul>
+    <h3>Customers with parameter:</h3>
+    <ul>
+        {% for item in customersByNumber %}
+            <li>{{ item.customerName }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

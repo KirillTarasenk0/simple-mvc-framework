@@ -8,14 +8,18 @@ use App\Models\Customer;
 
 class CustomersController
 {
+    private array $allCustomersData = [];
+    private array $customersByNumber = [];
     public function index(): void
     {
         $loader = new FilesystemLoader(ROOT_DIR . '/../app/Views');
         $twig = new Environment($loader);
         $customer = new Customer();
-        $allCustomerData = $customer->getAll();
+        $allCustomersData = $customer->getAll();
+        $customersByNumber = $customer->getCustomersByNumber();
         echo $twig->render('customersPage.twig', [
-            'customerInfo' => $allCustomerData
+            'customerInfo' => $allCustomersData,
+            'customersByNumber' => $customersByNumber
         ]);
     }
 }
