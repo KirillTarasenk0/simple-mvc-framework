@@ -20,10 +20,10 @@ class Router
                 $controller = new $controllerName();
                 $action = $action['action'];
                 $controller->$action();
-            } else {
-                echo 'URL not found';
+                return $controllerName;
             }
         }
+        echo "<h1>Page is not found.</h1>";
         return $controllerName;
     }
 }
