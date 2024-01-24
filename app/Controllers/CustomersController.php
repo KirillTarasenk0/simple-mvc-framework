@@ -12,7 +12,10 @@ class CustomersController
     {
         $loader = new FilesystemLoader(ROOT_DIR . '/../app/Views');
         $twig = new Environment($loader);
-        $pdo = new Customer();
-        echo $twig->render('customersPage.twig');
+        $customer = new Customer();
+        $allCustomerData = $customer->getAll();
+        echo $twig->render('customersPage.twig', [
+            'customerInfo' => $allCustomerData
+        ]);
     }
 }

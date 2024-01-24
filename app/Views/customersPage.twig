@@ -9,5 +9,11 @@
 </head>
 <body>
     <h1>Customers Page</h1>
+    <h3>Names:</h3>
+    <ul>
+        {% for item in customerInfo %}
+            <li>{{ item.customerName }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
