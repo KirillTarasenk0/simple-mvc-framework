@@ -18,7 +18,8 @@ class Router
             if ($route === $this->requestUri) {
                 $controllerName = $action['controller'];
                 $controller = new $controllerName();
-                $controller->$action['action']();
+                $action = $action['action'];
+                $controller->$action();
             } else {
                 echo 'URL not found';
             }
