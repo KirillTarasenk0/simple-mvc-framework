@@ -1,3 +1,3 @@
 <?php
 
-echo "This is root file";
+require_once '../vendor/autoload.php';
