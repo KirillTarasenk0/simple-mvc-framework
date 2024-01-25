@@ -21,5 +21,10 @@
             <li>{{ item.customerName }}</li>
         {% endfor %}
     </ul>
+    <form action="" method="post">
+        <div><label for="insertCustomer">Input query to add customer</label></div>
+        <div><input id="insertCustomer" name="insertCustomer" type="text" placeholder="Enter query"/></div>
+        <button name="sendBtn" type="submit">Send</button>
+    </form>
 </body>
 </html>

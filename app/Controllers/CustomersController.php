@@ -8,8 +8,6 @@ use App\Models\Customer;
 
 class CustomersController
 {
-    private array $allCustomersData = [];
-    private array $customersByNumber = [];
     public function index(): void
     {
         $loader = new FilesystemLoader(ROOT_DIR . '/../app/Views');
@@ -17,9 +15,12 @@ class CustomersController
         $customer = new Customer();
         $allCustomersData = $customer->getAll();
         $customersByNumber = $customer->getCustomersByNumber();
+        if (isset($_POST['sendBtn'])) {
+            $customer->insertCustomer();
+        }
         echo $twig->render('customersPage.twig', [
             'customerInfo' => $allCustomersData,
-            'customersByNumber' => $customersByNumber
+            'customersByNumber' => $customersByNumber,
         ]);
     }
 }
