@@ -2,25 +2,33 @@
 
 namespace App\Controllers;
 
-use Twig\Loader\FilesystemLoader;
-use Twig\Environment;
 use App\Models\Customer;
+use App\Views\loader\ViewLoader;
 
 class CustomersController
 {
+    private Customer $customer;
+    private ViewLoader $viewLoader;
+    public function __construct()
+    {
+        $this->customer = new Customer();
+        $this->viewLoader = new ViewLoader();
+    }
     public function index(): void
     {
-        $loader = new FilesystemLoader(ROOT_DIR . '/../app/Views');
-        $twig = new Environment($loader);
-        $customer = new Customer();
-        $allCustomersData = $customer->getAll();
-        $customersByNumber = $customer->getCustomersByNumber();
+        $allCustomersData = $this->customer->getAll();
         if (isset($_POST['sendBtn'])) {
-            $customer->insertCustomer();
+            $this->customer->insertCustomer();
         }
-        echo $twig->render('customersPage.twig', [
+        echo $this->viewLoader->loadTwig()->render('customersPage.twig', [
             'customerInfo' => $allCustomersData,
-            'customersByNumber' => $customersByNumber,
+        ]);
+    }
+    public function numberedCustomer(): void
+    {
+        $numberedCustomer = $this->customer->getCustomersByNumber();
+        echo $this->viewLoader->loadTwig()->render('customersPage.twig', [
+            'customersByNumber' => $numberedCustomer,
         ]);
     }
 }

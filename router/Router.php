@@ -6,7 +6,6 @@ class Router
 {
     private string $requestUri;
     private array $routes;
-    public int $requestUriParam;
     public function __construct()
     {
         $this->requestUri = $_SERVER['REQUEST_URI'];
@@ -16,7 +15,6 @@ class Router
     {
         $controllerName = null;
         foreach ($this->routes as $route => $action) {
-            $this->findRequestUriParam();
             if ($route === $this->requestUri) {
                 $controllerName = $action['controller'];
                 $controller = new $controllerName();
@@ -27,12 +25,5 @@ class Router
         }
         echo "<h1>Page is not found.</h1>";
         return $controllerName;
-    }
-    private function findRequestUriParam(): void
-    {
-        if (preg_match('/[0-9]+/', $this->requestUri, $matches)) {
-            $this->requestUriParam = $matches[0];
-            $this->requestUri = str_replace("/{$matches[0]}", '', $this->requestUri);
-        }
     }
 }
